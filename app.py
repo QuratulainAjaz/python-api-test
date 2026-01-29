@@ -2,18 +2,18 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# In-memory database (dictionary)
+
 guestbook = {}
-current_id = 1  # unique ID generator
+current_id = 1  
 
 
-# 1️⃣ GET all names
+#GET all names
 @app.route("/names", methods=["GET"])
 def get_names():
     return jsonify(guestbook), 200
 
 
-# 2️⃣ POST add new name
+#POST add new name
 @app.route("/add-name", methods=["POST"])
 def add_name():
     global current_id
@@ -32,7 +32,7 @@ def add_name():
     return jsonify(response), 201  # 201 Created
 
 
-# 3️⃣ DELETE name by ID
+#DELETE name by ID
 @app.route("/delete-name/<int:name_id>", methods=["DELETE"])
 def delete_name(name_id):
     if name_id not in guestbook:
@@ -47,3 +47,4 @@ def delete_name(name_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
